@@ -1,0 +1,43 @@
+<h4>HOME AUTOMATION DEVICE (IoT)</h4>
+<h6>YOUR CURRENT HOME STATE</h6>
+
+<ul style="font-variant: small-caps;">
+    <li>
+        television is currently {{(tvIsOn | async)? 'ON':'OFF'}} <br>
+        <span>
+            switch <button (click)='toggleTVSwitch()'> {{!(tvIsOn | async)? 'ON':'OFF'}}</button>
+        </span>
+    </li><br>
+    <li>
+        sound system volume is at {{soundSystemVolume | async}}% <br>
+        <span>
+           adjust <button (click)='decreaseSoundSystemVolume()'> - </button> |
+           <button (click)='increaseSoundSystemVolume()'> + </button>
+        </span>
+    </li><br>
+    <li>
+        fridge temperature is at {{fridgeTemperature | async}}°C <br>
+        <span>
+            adjust <button (click)='decreaseFridgeTemperature()'> - </button> |
+            <button (click)='increaseFridgeTemperature()'> + </button>
+        </span>
+    </li><br>
+    <li>
+        fan speed is at {{fanRotationSpeed | async}}RPM <br>
+        <span>
+            adjust <button (click)='decreaseFanRotationSpeed()'> - </button> |
+            <button (click)='increaseFanRotationSpeed()'> + </button>
+        </span>
+    </li><br>
+    <li>
+        home lights are currently {{lightsBrightnessLevel | async}}<br>
+        <span>
+            change brightness level: <br>
+            <select (change)="changeLightsBrightnessLevel($event.target.value)">
+                <option [value]="brightnessLevel" *ngFor="let brightnessLevel of brightnessLevels">
+                    {{brightnessLevel}}
+                </option>
+            </select>
+        </span>
+    </li>
+</ul>
